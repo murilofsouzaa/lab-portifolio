@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Mail, Download, Sparkles } from 'lucide-react';
+import { ArrowDown, Mail } from 'lucide-react';
+import profilePhoto from '../assets/_.jpeg';
 import type { ProfileData } from '../types';
 import type { Translations } from '../data/translations';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -8,15 +9,12 @@ import { soundManager } from '../utils/soundEffects';
 
 interface HeroProps {
   profile: ProfileData;
-  onToggleUser: () => void;
   t: Translations['hero'];
 }
 
-export const Hero: React.FC<HeroProps> = ({ profile, onToggleUser, t }) => {
+export const Hero: React.FC<HeroProps> = ({ profile, t }) => {
   const heroRef = useRef<HTMLElement>(null);
   useScrollReveal(heroRef);
-
-  const targetName = profile.id === 'murilo' ? 'Letícia' : 'Murilo';
 
   return (
     <section
@@ -126,15 +124,6 @@ export const Hero: React.FC<HeroProps> = ({ profile, onToggleUser, t }) => {
             <span>{t.letsTalk}</span>
           </a>
 
-          <a
-            href={`mailto:${profile.contact.email}?subject=${encodeURIComponent(t.resumeMailSubject)}`}
-            onClick={() => soundManager.playClick()}
-            className="font-mono text-xs flex items-center gap-1.5 opacity-75 hover:opacity-100 transition-opacity underline cursor-pointer"
-            style={{ color: profile.theme.pencil }}
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>{t.requestResume}</span>
-          </a>
         </div>
 
         {/* Mini Grid de Estatísticas / Destaques Rápidos */}
@@ -193,104 +182,15 @@ export const Hero: React.FC<HeroProps> = ({ profile, onToggleUser, t }) => {
             {t.stampText}
           </div>
 
-          {/* Ilustração Vetorial Desenhada à Mão Personalizada */}
-          <div className="w-full h-full relative flex items-center justify-center overflow-hidden">
-            {profile.avatarType === 'murilo' ? (
-              /* Ilustração Avatar do Murilo */
-              <svg className="w-full h-full" viewBox="0 0 200 220" fill="none">
-                {/* Cabeça / Formato de Rosto */}
-                <path
-                  d="M50 85 C 45 35, 155 35, 150 85 C 152 128, 140 162, 100 166 C 60 162, 48 128, 50 85 Z"
-                  stroke={profile.theme.ink}
-                  strokeWidth="3.2"
-                  strokeLinecap="round"
-                />
-                {/* Cabelo curto despojado */}
-                <path
-                  d="M45 68 C 42 35, 70 18, 100 18 C 130 18, 158 35, 155 68 C 145 42, 115 35, 100 36 C 85 35, 55 42, 45 68 Z"
-                  fill={profile.theme.ink}
-                />
-                {/* Óculos de desenvolvedor */}
-                <rect x="58" y="78" width="34" height="24" rx="4" stroke={profile.theme.ink} strokeWidth="3" fill="none" />
-                <rect x="108" y="78" width="34" height="24" rx="4" stroke={profile.theme.ink} strokeWidth="3" fill="none" />
-                <path d="M92 88 L 108 88" stroke={profile.theme.ink} strokeWidth="3" strokeLinecap="round" />
-                {/* Olhos e pupilas */}
-                <circle cx="75" cy="90" r="3" fill={profile.theme.ink} />
-                <circle cx="125" cy="90" r="3" fill={profile.theme.ink} />
-                {/* Nariz sutil */}
-                <path d="M100 95 L 97 108 L 104 108" stroke={profile.theme.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                {/* Sorriso simpático com detalhe colorido */}
-                <path d="M80 125 Q 100 142, 120 125" stroke={profile.theme.red} strokeWidth="3.5" strokeLinecap="round" />
-                {/* Barba sutil desenhada em pontilhado/hachuras */}
-                <path d="M82 142 Q 100 152, 118 142" stroke={profile.theme.pencil} strokeWidth="2" strokeDasharray="3 3" />
-                {/* Ombro e gola de camisa/hoodie */}
-                <path d="M30 185 C 60 165, 140 165, 170 185 L 180 220 L 20 220 Z" stroke={profile.theme.ink} strokeWidth="3" fill={profile.theme.paper} />
-                {/* Símbolo de código na camisa */}
-                <text x="82" y="202" fontFamily="monospace" fontSize="14" fill={profile.theme.blue} fontWeight="bold">&lt; / &gt;</text>
-              </svg>
-            ) : (
-              /* Ilustração Avatar da Letícia */
-              <svg className="w-full h-full" viewBox="0 0 200 220" fill="none">
-                {/* Cabelo longo ondulado de fundo */}
-                <path
-                  d="M38 70 C 25 120, 30 170, 42 205 C 55 170, 48 110, 52 70 Z"
-                  fill={profile.theme.ink}
-                />
-                <path
-                  d="M162 70 C 175 120, 170 170, 158 205 C 145 170, 152 110, 148 70 Z"
-                  fill={profile.theme.ink}
-                />
-                {/* Rosto */}
-                <path
-                  d="M55 85 C 50 40, 150 40, 145 85 C 148 126, 138 160, 100 164 C 62 160, 52 126, 55 85 Z"
-                  stroke={profile.theme.ink}
-                  strokeWidth="3.2"
-                  strokeLinecap="round"
-                />
-                {/* Cabelo frontal com volume e franja */}
-                <path
-                  d="M48 65 C 50 30, 80 20, 100 20 C 120 20, 150 30, 152 65 C 135 40, 110 38, 100 42 C 88 38, 65 40, 48 65 Z"
-                  fill={profile.theme.ink}
-                />
-                {/* Olhos marcantes */}
-                <path d="M68 90 Q 76 82, 84 90" stroke={profile.theme.ink} strokeWidth="3" strokeLinecap="round" />
-                <circle cx="76" cy="90" r="3.2" fill={profile.theme.ink} />
-                <path d="M116 90 Q 124 82, 132 90" stroke={profile.theme.ink} strokeWidth="3" strokeLinecap="round" />
-                <circle cx="124" cy="90" r="3.2" fill={profile.theme.ink} />
-                {/* Nariz delicado */}
-                <path d="M100 96 L 98 106 L 103 106" stroke={profile.theme.ink} strokeWidth="2.2" strokeLinecap="round" />
-                {/* Sorriso e batom sutil */}
-                <path d="M78 126 Q 100 144, 122 126" stroke={profile.theme.red} strokeWidth="3.5" strokeLinecap="round" />
-                {/* Brincos / detalhe geométrico */}
-                <circle cx="50" cy="115" r="3.5" fill={profile.theme.yellow} stroke={profile.theme.ink} strokeWidth="1.5" />
-                <circle cx="150" cy="115" r="3.5" fill={profile.theme.yellow} stroke={profile.theme.ink} strokeWidth="1.5" />
-                {/* Ombro e gola */}
-                <path d="M35 185 C 65 168, 135 168, 165 185 L 175 220 L 25 220 Z" stroke={profile.theme.ink} strokeWidth="3" fill={profile.theme.paper} />
-                {/* Ícone de fluxo de dados na camisa */}
-                <text x="86" y="202" fontFamily="monospace" fontSize="13" fill={profile.theme.blue} fontWeight="bold">λ | ⛁</text>
-              </svg>
-            )}
+          <div className="w-full h-full relative flex items-center justify-center overflow-hidden rounded-[10px] bg-white/40">
+            <img
+              src={profilePhoto}
+              alt="Retrato do perfil"
+              className="w-full h-full object-cover object-center block"
+            />
           </div>
         </div>
 
-        {/* Botão de Alternância Logo Abaixo do Retrato */}
-        <div className="mt-4 text-center">
-          <button
-            onClick={() => {
-              soundManager.playPop();
-              onToggleUser();
-            }}
-            className="sketchy font-mono text-xs font-bold px-4 py-2 cursor-pointer transition-transform active:scale-95 inline-flex items-center gap-2"
-            style={{
-              backgroundColor: profile.theme.yellow,
-              color: '#221F1B',
-              border: '2px solid #221F1B',
-            }}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.switchToProfile(targetName)}</span>
-          </button>
-        </div>
       </div>
     </section>
   );

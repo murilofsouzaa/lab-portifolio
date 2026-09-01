@@ -6,7 +6,7 @@ import { soundManager } from '../utils/soundEffects';
 import { PortfolioContext } from './portfolioContextDef';
 
 export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<ProfileId>('murilo');
+  const [currentUser, setCurrentUser] = useState<ProfileId>('leticia');
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('lab_portfolio_lang');
