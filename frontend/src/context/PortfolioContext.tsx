@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import type { Language, ProfileId, Project } from '../types';
+import type { Language, Project } from '../types';
 import { PROFILES_I18N } from '../data/portfolioData';
 import { TRANSLATIONS } from '../data/translations';
 import { soundManager } from '../utils/soundEffects';
 import { PortfolioContext } from './portfolioContextDef';
 
 export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<ProfileId>('murilo');
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('lab_portfolio_lang');
@@ -18,7 +17,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
-  const profile = PROFILES_I18N[language][currentUser];
+  const profile = PROFILES_I18N[language].murilo;
   const t = TRANSLATIONS[language];
 
   const setLanguage = (lang: Language) => {
@@ -33,10 +32,6 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const nextLang: Language = language === 'pt' ? 'en' : 'pt';
     setLanguage(nextLang);
     showToast(nextLang === 'en' ? 'Switched to English! 🌐' : 'Mudado para Português! 🌐');
-  };
-
-  const toggleUser = () => {
-    setCurrentUser((prev) => (prev === 'murilo' ? 'leticia' : 'murilo'));
   };
 
   const showToast = (msg: string) => {
@@ -64,9 +59,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   return (
     <PortfolioContext.Provider
       value={{
-        currentUser,
         profile,
-        toggleUser,
         language,
         setLanguage,
         toggleLanguage,

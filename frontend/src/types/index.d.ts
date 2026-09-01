@@ -1,4 +1,4 @@
-export type ProfileId = 'murilo' | 'leticia';
+export type ProfileId = 'murilo';
 
 export interface Project {
   id: string;
@@ -63,7 +63,7 @@ export interface ProfileData {
   tagline: string;
   tag: string;
   status: string;
-  avatarType: 'murilo' | 'leticia';
+  avatarType: 'murilo';
   bio: string;
   longBio: string[];
   stats: { value: string; label: string; note: string }[];

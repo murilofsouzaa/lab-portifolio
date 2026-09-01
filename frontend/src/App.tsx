@@ -14,9 +14,7 @@ import { Toast } from './components/Toast';
 
 function PortfolioMain() {
   const {
-    currentUser,
     profile,
-    toggleUser,
     language,
     toggleLanguage,
     t,
@@ -43,11 +41,9 @@ function PortfolioMain() {
       {/* Filtros SVG para bordas rugosas e texturas */}
       <SvgFilters />
 
-      {/* Barra de Navegação com Troca de Idioma e Perfil */}
+      {/* Barra de Navegação com Troca de Idioma */}
       <Navbar
         profile={profile}
-        currentUser={currentUser}
-        onToggleUser={toggleUser}
         language={language}
         onToggleLanguage={toggleLanguage}
         isMuted={isMuted}
@@ -57,7 +53,7 @@ function PortfolioMain() {
 
       {/* Conteúdo Principal com Container Centralizado */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6">
-        <Hero profile={profile} onToggleUser={toggleUser} t={t.hero} />
+        <Hero profile={profile} t={t.hero} />
         <About profile={profile} t={t.about} />
         <Projects profile={profile} onSelectProject={setSelectedProject} t={t.projects} />
         <Skills profile={profile} t={t.skills} />

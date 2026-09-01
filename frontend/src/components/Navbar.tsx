@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Menu, X, ArrowLeftRight, Sparkles, Languages } from 'lucide-react';
-import type { Language, ProfileData, ProfileId } from '../types';
+import { Volume2, VolumeX, Menu, X, Languages } from 'lucide-react';
+import type { Language, ProfileData } from '../types';
 import type { Translations } from '../data/translations';
 import { soundManager } from '../utils/soundEffects';
 
 interface NavbarProps {
   profile: ProfileData;
-  currentUser: ProfileId;
-  onToggleUser: () => void;
   language: Language;
   onToggleLanguage: () => void;
   isMuted: boolean;
@@ -18,8 +16,6 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({
   profile,
-  currentUser,
-  onToggleUser,
   language,
   onToggleLanguage,
   isMuted,
@@ -27,10 +23,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   t,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const targetName = currentUser === 'murilo' ? 'Letícia' : 'Murilo';
-  const targetRole = currentUser === 'murilo'
-    ? (language === 'pt' ? 'Engenharia de Dados' : 'Data Engineering')
-    : (language === 'pt' ? 'Full-Stack Dev' : 'Full-Stack Dev');
 
   const navLinks = [
     { href: '#sobre', label: t.about, num: '01' },
@@ -107,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           ))}
         </nav>
 
-        {/* Controles: Idioma + Som + Switch de Perfil + Menu Mobile */}
+        {/* Controles: Idioma + Som + Menu Mobile */}
         <div className="flex items-center gap-2 sm:gap-2.5">
           {/* Botão de Troca de Idioma (PT / EN) */}
           <button
@@ -141,26 +133,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
           >
             {isMuted ? <VolumeX className="w-4 h-4 opacity-60" /> : <Volume2 className="w-4 h-4" style={{ color: profile.theme.red }} />}
-          </button>
-
-          {/* Botão de Alternância de Perfil (Destaque Principal) */}
-          <button
-            onClick={() => {
-              soundManager.playPaperRustle();
-              onToggleUser();
-            }}
-            className="sketchy group relative cursor-pointer px-3 sm:px-4 py-1.5 font-mono text-xs font-bold transition-all duration-200 active:scale-95 flex items-center gap-2 shadow-xs"
-            style={{
-              backgroundColor: profile.theme.yellow,
-              color: '#221F1B',
-              border: '2px solid #221F1B',
-            }}
-            title={`${t.switchTo} ${targetName} (${targetRole})`}
-          >
-            <ArrowLeftRight className="w-3.5 h-3.5 transition-transform group-hover:rotate-180 duration-300" />
-            <span className="hidden sm:inline">{t.switchTo}</span>
-            <span>{targetName}</span>
-            <Sparkles className="w-3 h-3 text-red-600 animate-pulse" />
           </button>
 
           {/* Botão Hambúrguer Mobile */}

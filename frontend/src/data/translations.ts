@@ -7,7 +7,6 @@ export interface Translations {
     skills: string;
     doodles: string;
     contact: string;
-    switchTo: string;
     soundToggleMute: string;
     soundToggleUnmute: string;
     viewing: string;
@@ -20,7 +19,6 @@ export interface Translations {
     letsTalk: string;
     requestResume: string;
     resumeMailSubject: string;
-    switchToProfile: (targetName: string) => string;
     stampText: string;
   };
   about: {
@@ -137,7 +135,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       skills: 'habilidades',
       doodles: 'rabiscos',
       contact: 'contato',
-      switchTo: 'Mudar p/',
       soundToggleMute: 'Desativar efeitos sonoros',
       soundToggleUnmute: 'Ativar efeitos sonoros de papel',
       viewing: 'Vendo:',
@@ -150,7 +147,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       letsTalk: 'bater um papo',
       requestResume: 'solicitar currículo',
       resumeMailSubject: 'Contato via Portfolio - Solicitação de Currículo',
-      switchToProfile: (targetName: string) => `Alternar para ${targetName}`,
       stampText: '✓ Lab 2026',
     },
     about: {
@@ -251,7 +247,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       coffeeToast1: 'Mais um café fresquinho adicionado! ☕',
       coffeeToast2: 'Nível de cafeína no limite máximo de produtividade! 🚀⚡',
       credits: (fullName: string) => `Feito à mão (com código limpo & muito café) © 2026 // ${fullName}`,
-      subcredits: 'Portfólio Compartilhado: Murilo Freitas (Full-Stack) & Letícia Figueiredo (Data Engineering)',
+      subcredits: 'Portfólio pessoal: Murilo Freitas (Full-Stack)',
     },
     toast: {
       successHeader: 'Nota Anotada!',
@@ -265,7 +261,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       skills: 'skills',
       doodles: 'doodles',
       contact: 'contact',
-      switchTo: 'Switch to',
       soundToggleMute: 'Mute sound effects',
       soundToggleUnmute: 'Enable paper sound effects',
       viewing: 'Viewing:',
@@ -278,7 +273,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       letsTalk: "let's talk",
       requestResume: 'request resume',
       resumeMailSubject: 'Portfolio Contact - Resume Request',
-      switchToProfile: (targetName: string) => `Switch to ${targetName}`,
       stampText: '✓ Lab 2026',
     },
     about: {
@@ -379,7 +373,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       coffeeToast1: 'Fresh cup of coffee added! ☕',
       coffeeToast2: 'Caffeine level at maximum productivity! 🚀⚡',
       credits: (fullName: string) => `Handcrafted (with clean code & lots of coffee) © 2026 // ${fullName}`,
-      subcredits: 'Shared Portfolio: Murilo Freitas (Full-Stack) & Letícia Figueiredo (Data Engineering)',
+      subcredits: 'Personal portfolio: Murilo Freitas (Full-Stack)',
     },
     toast: {
       successHeader: 'Note Taken!',
