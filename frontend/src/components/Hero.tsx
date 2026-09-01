@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Mail, Download } from 'lucide-react';
+import { ArrowDown, Mail } from 'lucide-react';
 import portraitImage from '../assets/隻胖狗🤣🤣(是 IA).jpeg';
 import type { ProfileData } from '../types';
 import type { Translations } from '../data/translations';
@@ -124,15 +124,6 @@ export const Hero: React.FC<HeroProps> = ({ profile, t }) => {
             <span>{t.letsTalk}</span>
           </a>
 
-          <a
-            href={`mailto:${profile.contact.email}?subject=${encodeURIComponent(t.resumeMailSubject)}`}
-            onClick={() => soundManager.playClick()}
-            className="font-mono text-xs flex items-center gap-1.5 opacity-75 hover:opacity-100 transition-opacity underline cursor-pointer"
-            style={{ color: profile.theme.pencil }}
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>{t.requestResume}</span>
-          </a>
         </div>
 
         {/* Mini Grid de Estatísticas / Destaques Rápidos */}
